@@ -1,14 +1,17 @@
+minikube stop
 minikube delete
 minikube start --vm-driver=virtualbox
 eval $(minikube docker-env)
 minikube addons enable metallb
 
-docker rmi nginx_image
-docker build -t nginx/nginx_image .
-kubectl delete pods nginx
-kubectl apply -f nginx/config.yaml
-kubectl apply -f nginx/nginx.yaml
+docker build -t nginx_image srcs/nginx
+kubectl apply -f ./srcs/nginx/config.yaml
+kubectl apply -f ./srcs/nginx/nginx.yaml
 
+docker build -t mysql_image ./srcs/mySql
+kubectl apply -f ./srcs/mySql/mysql.yaml
 
+docker build -t wordpress_image ./srcs/Wordpress
+kubectl apply -f ./srcs/Wordpress/wordpress.yaml
 
 minikube dashboard
