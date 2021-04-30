@@ -17,4 +17,7 @@ kubectl apply -f ./srcs/Wordpress/wordpress.yaml
 docker build -t phpmyadmin_image ./srcs/phpMyAdmin
 kubectl apply -f ./srcs/phpMyAdmin/phpmyadmin.yaml
 
+# docker build -t ftps_image ./srcs/ftps/ftps.yaml
+# kubectl apply -f ./srcs/ftps/ftps.yaml
+
 minikube dashboard
