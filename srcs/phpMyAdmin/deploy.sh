@@ -2,6 +2,7 @@
 # minikube start --vm-driver=virtualbox
 eval $(minikube docker-env)
 docker rmi -f phpmyadmin_image
+kubectl delete deploy phpmyadmin-deployment
 docker build -t phpmyadmin_image .
 # kubectl delete pods phpmyadmin
 kubectl delete deploy phpmyadmin-deployment
