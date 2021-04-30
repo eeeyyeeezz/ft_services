@@ -1,5 +1,4 @@
 FROM alpine:3.12
-
 LABEL student=gmorra
 
 RUN apk update && apk upgrade
