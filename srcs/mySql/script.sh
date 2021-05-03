@@ -1,16 +1,15 @@
-# install mariadb
-mariadb-install-db -u admin
+#!/bin/sh
 
-# start mysql
-mysqld -u admin & sleep 5
+mariadb-install-db -u root
+mysqld -u root & sleep 5
 
-# create database
-mysql -u root --execute="CREATE DATABASE wordpress;"
+mysql -u root -e "CREATE DATABASE wordpress;"
 
-# import
+# copy wp database
 mysql -u root wordpress < wordpress.sql
 
-# create user no password
-mysql -u root --execute="CREATE USER 'admin'@'%' IDENTIFIED BY ''; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION; USE wordpress; FLUSH PRIVILEGES;"
+mysql -u root -e "CREATE USER 'admin'@'%' IDENTIFIED BY 'admin';"
+mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' IDENTIFIED BY 'admin' WITH GRANT OPTION; USE wordpress;"
+mysql -u root -e "FLUSH PRIVILEGES"
 
 /usr/bin/supervisord -c /etc/supervisord.conf
