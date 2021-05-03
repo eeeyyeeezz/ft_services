@@ -2,17 +2,20 @@ FROM alpine:3.12
 LABEL student=gmorra
 
 RUN apk update && apk upgrade
-RUN apk add vsftpd openssl supervisor
+RUN apk add vsftpd openssl supervisor sudo
 # telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
 
-# Создание пользователя и (не)задавание ему пароля, а еще ssl вдобавок 
-RUN echo "admin:" 
+# Создание пользователя и создание пароля, а еще ssl вдобавок 
+RUN echo "root:admin" | chpasswd 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 			\
 -keyout /etc/ssl/private/vsftpd.key -out /etc/ssl/certs/vsftpd.crt	\
 -subj "/C=RU/ST=Kazan/L=Kazan/O=21/OU=gmorra/CN=localhost"
 
+RUN mkdir -p home/user/
+RUN sudo chmod -R 755 home/user/
 # Копирование конфигов
 COPY ./supervisor.conf /etc/supervisord.conf
+# COPY ./srcs/telegraf.conf /etc/telegraf/
 COPY ./vsftpd.conf /etc/vsftpd/
 
 # Копирование скрипта и выдача прав
