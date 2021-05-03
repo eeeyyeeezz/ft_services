@@ -23,5 +23,5 @@ COPY ./script.sh /
 RUN	chmod +x script.sh
 
 # Открытие портов и запуск
-EXPOSE 21 30021
+EXPOSE 21 20 20020
 CMD sh ./script.sh
