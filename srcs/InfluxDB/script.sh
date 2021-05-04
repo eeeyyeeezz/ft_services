@@ -1,2 +1,4 @@
-# /etc/init.d/telegraf start
-/usr/sbin/influxd -config /etc/influxdb.conf
+/usr/bin/supervisord -c /etc/supervisord.conf
+
+# influx -execute "CREATE DATABASE telegraf"
+# influx -execute "CREATE USER telegraf WITH PASSWORD 'telegraf'"

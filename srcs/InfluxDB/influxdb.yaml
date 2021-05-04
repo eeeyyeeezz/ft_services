@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: influxdb-deployment
+  template:
+    metadata:
+      labels:
+        app: influxdb-deployment
+    spec:
+      volumes:
+        - name: influxdb-vlm
+          hostPath:
+            path: /var/run/docker.sock
+      containers:
+        - name: influxdb-deployment
+          image: influxdb_image
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8086
+          volumeMounts:
+            - name: influxdb-vlm
+              mountPath: /mnt/influxdb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb-svc
+spec:
+  selector:
+    app: influxdb-svc
+  ports:
+  - port: 8086
+    protocol: TCP
+    targetPort: 8086

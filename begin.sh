@@ -20,4 +20,7 @@ kubectl apply -f ./srcs/phpMyAdmin/phpmyadmin.yaml
 docker build -t ftps_image ./srcs/FTPS
 kubectl apply -f ./srcs/ftps/ftps.yaml
 
+# docker build -t influxdb_image ./srcs/InfluxDB.
+# kubectl apply -f ./srcs/InfluxDB/influxdb.yaml
+
 minikube dashboard
