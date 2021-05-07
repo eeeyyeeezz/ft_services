@@ -4,6 +4,9 @@ LABEL student=gmorra
 RUN apk update && apk upgrade
 RUN	apk add nginx openssl
 
+RUN adduser -D gmorra
+RUN echo "gmorra:pass" | chpasswd
+
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 COPY script.sh ./
