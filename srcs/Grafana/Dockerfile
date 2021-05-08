@@ -4,7 +4,7 @@ LABEL student=gmorra
 
 # Установка приколов 
 RUN apk update && apk upgrade 
-RUN apk add sudo openrc wget supervisor\
+RUN apk add sudo openrc wget supervisor sudo\
 	telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
 
 # Установливаем графану
@@ -20,11 +20,9 @@ RUN apk add glibc-2.28-r0.apk
 
 # Копирование конфигов
 COPY ./supervisord.conf /etc/supervisord.conf
-COPY ./srcs/default.json /usr/share/grafana/public/dashboards/
+# COPY ./srcs/default.json /usr/share/grafana/public/dashboards/
 # COPY ./telegraf.conf /etc/telegraf/
 RUN ln -s grafana-7.4.0/bin/grafana-server ./grafana-server
-RUN chmod +x tmp/start.sh
-
 
 # Копирование скрипа и выдача прав 
 COPY ./script.sh .
