@@ -1,6 +1,6 @@
 # Установка OS
 FROM alpine:3.12
-LABEL = gmorra
+LABEL student=gmorra
 
 # Установка приколов 
 RUN apk update && apk upgrade
