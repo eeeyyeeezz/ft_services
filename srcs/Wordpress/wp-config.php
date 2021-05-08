@@ -3,10 +3,10 @@
 define( 'DB_NAME', 'wordpress' );
 
 /** MySQL database username */
-define( 'DB_USER', 'admin' );
+define( 'DB_USER', 'root' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'admin' );
+define( 'DB_PASSWORD', 'pass' );
 
 /** MySQL hostname */
 define( 'DB_HOST', 'mysql' );

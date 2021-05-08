@@ -12,7 +12,7 @@ RUN mkdir -p /run/mysqld/
 COPY ./script.sh /tmp/
 COPY ./my.cnf /etc/
 COPY ./supervisord.conf /etc/supervisord.conf
-COPY ./wordpress.sql /
+# COPY ./wordpress.sql /
 
 # Выдача прав
 RUN sudo chmod -R 755 /var/lib/mysql/
