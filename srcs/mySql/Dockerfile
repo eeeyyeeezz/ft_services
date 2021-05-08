@@ -1,7 +1,8 @@
+# Установка OS
 FROM alpine:3.12
 LABEL student=gmorra
 
-# Установка приколов
+# Установка и обновление приколов
 RUN apk update && apk upgrade
 RUN apk add mariadb mariadb-common mariadb-client supervisor sudo \
 	&& apk add openrc mysql-client

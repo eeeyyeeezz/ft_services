@@ -1,3 +1,4 @@
+# Установка OS
 FROM alpine:3.12
 LABEL student=gmorra
 
