@@ -4,8 +4,8 @@ LABEL student=gmorra
 
 # Установка приколов 
 RUN apk update && apk upgrade
-RUN apk add vsftpd openssl supervisor sudo\
-	telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
+RUN apk add vsftpd openssl supervisor sudo
+RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
 
 # Создание юзера + ключи
 RUN echo "root:pass" | chpasswd

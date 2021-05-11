@@ -5,6 +5,7 @@ LABEL student=gmorra
 # Обновление и установка приколов
 RUN apk update && apk upgrade
 RUN	apk add nginx openssl openssh supervisor openrc
+RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
 
 # Создание юзера
 RUN adduser -D gmorra
@@ -13,7 +14,7 @@ RUN echo "root:pass" | chpasswd
 # Копирование конфигов
 RUN mkdir -p /run/nginx
 COPY ./supervisord.conf /etc/supervisord.conf
-# COPY ./telegraf.conf /etc/telegraf/
+COPY ./telegraf.conf /etc/telegraf/
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY script.sh ./
 

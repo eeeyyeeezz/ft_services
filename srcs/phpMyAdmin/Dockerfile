@@ -8,7 +8,7 @@ RUN	apk add wget php7 php7-fpm php7-mysqli php7-mbstring php7-json	\
 	php7-gd php7-curl php7-xml php7-imap php7-cgi fcgi php7-pdo \ 
 	php7-pdo_mysql php7-soap php7-xmlrpc php7-posix php7-mcrypt \
 	php7-gettext php7-ldap php7-ctype php7-dom 
-# telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
+RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
 
 
 # Установка phpMyAdmin
@@ -25,7 +25,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf			
 COPY ./supervisor.conf /etc/supervisord.conf		
 COPY ./config.inc.php /www/phpmyadmin/					
-
+COPY ./telegraf.conf /etc/telegraf/
 
 # Копирование скрипта и выдача прав
 COPY ./script.sh /
