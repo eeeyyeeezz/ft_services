@@ -4,13 +4,13 @@ LABEL student=gmorra
 
 # Установка приколов 
 RUN apk update && apk upgrade 
-RUN apk add sudo openrc wget supervisor sudo\
-	telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
+RUN apk add openrc wget supervisor
+RUN	apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
 
 # Установливаем графану
-RUN wget https://dl.grafana.com/oss/release/grafana-7.4.0.linux-amd64.tar.gz
-RUN tar -zxvf grafana-7.4.0.linux-amd64.tar.gz
-RUN rm -rf grafana-7.4.0.linux-amd64.tar.gz
+RUN wget https://dl.grafana.com/enterprise/release/grafana-enterprise-7.3.6.linux-amd64.tar.gz \
+	&& tar -xf grafana-enterprise-7.3.6.linux-amd64.tar.gz --strip-components=1 -C / \
+	&& rm grafana-enterprise-7.3.6.linux-amd64.tar.gz 
 
 # Устанавливаем глибс
 RUN apk --no-cache add ca-certificates wget
@@ -20,11 +20,11 @@ RUN apk add glibc-2.28-r0.apk
 
 # Копирование конфигов
 COPY ./supervisord.conf /etc/supervisord.conf
-# COPY ./srcs/default.json /usr/share/grafana/public/dashboards/
+# COPY ./grafana.db /grafana-7.4.0/data/grafana.db
 COPY ./telegraf.conf /etc/telegraf/
 RUN ln -s grafana-7.4.0/bin/grafana-server ./grafana-server
 
-# Копирование скрипа и выдача прав 
+# Копирование скрипта и выдача прав 
 COPY ./script.sh .
 RUN chmod +x script.sh
 
