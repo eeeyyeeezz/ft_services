@@ -4,19 +4,13 @@ LABEL student=gmorra
 
 # Установка приколов 
 RUN apk update && apk upgrade 
-RUN apk add openrc wget supervisor
+RUN apk add openrc wget supervisor libc6-compat
 RUN	apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
 
 # Установливаем графану
-RUN wget https://dl.grafana.com/enterprise/release/grafana-enterprise-7.3.6.linux-amd64.tar.gz \
-	&& tar -xf grafana-enterprise-7.3.6.linux-amd64.tar.gz --strip-components=1 -C / \
-	&& rm grafana-enterprise-7.3.6.linux-amd64.tar.gz 
-
-# Устанавливаем глибс
-RUN apk --no-cache add ca-certificates wget
-RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
-RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.28-r0/glibc-2.28-r0.apk
-RUN apk add glibc-2.28-r0.apk
+RUN wget https://dl.grafana.com/oss/release/grafana-7.4.0.linux-amd64.tar.gz
+RUN tar -zxvf grafana-7.4.0.linux-amd64.tar.gz
+RUN rm -rf grafana-7.4.0.linux-amd64.tar.gz
 
 # Копирование конфигов
 COPY ./supervisord.conf /etc/supervisord.conf
