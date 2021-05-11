@@ -28,4 +28,7 @@ kubectl apply -f ./srcs/ftps/ftps.yaml
 docker build -t influxdb_image ./srcs/InfluxDB
 kubectl apply -f ./srcs/InfluxDB/influxdb.yaml
 
+docker build -t grafana_image ./srcs/Grafana
+kubectl apply -f ./srcs/Grafana/grafana.yaml
+
 minikube dashboard

@@ -5,11 +5,11 @@ LABEL student=gmorra
 # Установка приколов
 RUN apk update && apk upgrade
 RUN apk add supervisor influxdb 
-	# apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
+RUN	apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
 
 # Копирование конфигов
 COPY ./supervisord.conf /etc/supervisord.conf
-# COPY ./telegraf.conf /etc/telegraf/
+COPY ./telegraf.conf /etc/telegraf/
 
 # Копиррование скрипта и выдача прав
 COPY ./script.sh /

@@ -1,4 +1,4 @@
 /usr/bin/supervisord -c /etc/supervisord.conf
 
-# influx -execute "CREATE DATABASE telegraf"
-# influx -execute "CREATE USER telegraf WITH PASSWORD 'telegraf'"
+influx -execute "CREATE DATABASE telegraf"
+influx -execute "CREATE USER admin WITH PASSWORD 'admin'"
