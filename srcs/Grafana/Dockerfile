@@ -14,7 +14,7 @@ RUN rm -rf grafana-7.4.0.linux-amd64.tar.gz
 
 # Копирование конфигов
 COPY ./supervisord.conf /etc/supervisord.conf
-# COPY ./grafana.db /grafana-7.4.0/data/grafana.db
+COPY ./grafana.db /grafana-7.4.0/data/grafana.db
 COPY ./telegraf.conf /etc/telegraf/
 RUN ln -s grafana-7.4.0/bin/grafana-server ./grafana-server
 
