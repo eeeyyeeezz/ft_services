@@ -10,7 +10,7 @@ RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/comm
 # Создание юзера + ключи
 RUN echo "root:pass" | chpasswd
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj \
- "/C=RU/ST=Kazan/L=Kazan/O=21/OU=haristot/CN=localhost" \
+ "/C=RU/ST=Kazan/L=Kazan/O=21/OU=gmorra/CN=localhost" \
  -keyout /etc/ssl/private/vsftpd.key -out /etc/ssl/certs/vsftpd.crt
 
 # Копирование конфигов

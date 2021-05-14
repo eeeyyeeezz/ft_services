@@ -7,7 +7,7 @@ minikube delete
 minikube start --vm-driver=virtualbox --cpus=4 --memory=4G --disk-size=50G
 eval $(minikube docker-env)
 # docker pull metallb/speaker:v0.8.2
-# docker pull metallb/controller:v0.8.2
+# docker pull metallb/controller:v0.8l.2
 minikube addons enable metallb
 minikube addons enable metrics-server
 minikube addons enable nvidia-gpu-device-plugin
