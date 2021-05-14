@@ -9,7 +9,6 @@ spec:
     requests:
       storage: 1Gi
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -45,7 +44,7 @@ kind: Service
 metadata:
   name: influxdb-svc
   labels:
-      app  : influxdb
+      app: influxdb
 spec:
   type: ClusterIP
   selector:

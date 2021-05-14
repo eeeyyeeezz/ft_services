@@ -10,18 +10,19 @@ RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/comm
 
 # Копирование конфигов
 RUN mkdir -p /run/mysqld/
-COPY ./script.sh /tmp/
 COPY ./my.cnf /etc/
 COPY ./telegraf.conf /etc/telegraf/
 COPY ./supervisord.conf /etc/supervisord.conf
-# COPY ./wordpress.sql /
+COPY ./wordpress.sql /
 
 # Выдача прав
 RUN sudo chmod -R 755 /var/lib/mysql/
-RUN	chmod +x tmp/script.sh
 
-# Открытие портов и вольюм чтобы ничего не взрывалось + запуск скрипта
+# Копирование конфига + выдача прав
+COPY ./script.sh .
+RUN	chmod +x script.sh
 EXPOSE 3306	
-VOLUME ["/var/lib/mysql"]
 
-ENTRYPOINT sh /tmp/script.sh
+# Открытие вольюма + запуск скрипта
+VOLUME ["/var/lib/mysql"]
+ENTRYPOINT sh ./script.sh

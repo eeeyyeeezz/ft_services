@@ -21,7 +21,7 @@ COPY ./telegraf.conf /etc/telegraf/
 COPY ./vsftpd.conf /etc/vsftpd/
 COPY ./script.sh .
 
-# Запуск скрипта
+# Выдача прав, открытие портов + запуск скрипта
 RUN chmod +x script.sh
 EXPOSE 30021 21
 
