@@ -1,3 +1,7 @@
+# gmorra's ft_services
+# team locked 21.04.25
+# team closed 21.05.14
+
 minikube stop
 minikube delete
 minikube start --vm-driver=virtualbox --cpus=4 --memory=4G --disk-size=50G
@@ -7,7 +11,6 @@ docker pull metallb/controller:v0.8.2
 minikube addons enable metallb
 minikube addons enable metrics-server
 minikube addons enable nvidia-gpu-device-plugin
-
 
 docker build -t nginx_image srcs/nginx
 kubectl apply -f ./srcs/nginx/config.yaml

@@ -1,5 +1,4 @@
 eval $(minikube docker-env)
-minikube addons enable metallb
 kubectl delete deployment nginx-deployment
 docker rmi -f nginx_image
 docker build -t nginx_image .
